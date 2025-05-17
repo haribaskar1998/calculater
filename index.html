@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .calcapp {
+      width: 100%;
+      max-width: 350px;
+      margin: 40px auto;
+      background: #000000;
+      padding: 35px 20px;
+      border-radius: 20px;
+    }
+    .calccont .row {
+        padding-bottom: 20px;
+    }
+    .calccont .row button:nth-last-child(1) {
+        background: #ff9100;
+    }
+    .calccont input#testone {
+      width: -webkit-fill-available;
+      height: 80px;
+      padding: 0px 10px;
+      margin-bottom: 30px;
+      background: #323232;
+      border: none;
+      text-align: right;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 36px;
+    }
+
+    .calccont input#testone::placeholder {
+      color: #fff;
+      font-size: 36px;
+    }
+
+    .calccont .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .calccont button {
+      flex: 1;
+      padding: 0px;
+      margin: 5px;
+      font-size: 24px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      background-color: #505050;
+      color: white;
+      width: 60px;
+      height: 60px;
+      margin: 0px 12px;
+    }
+
+    .calccont button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calcapp">
+  <div class="calccont">
+    <input type="text" id="testone" placeholder="0" readonly />
+
+    <div class="row">
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+       <button onclick="appendOperator('+')">+</button>
+    </div>
+    <div class="row">
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button onclick="appendOperator('-')">-</button>
+    </div>
+    <div class="row">
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button onclick="appendOperator('*')">*</button>
+    </div>
+    <div class="row">
+      <button onclick="appendNumber('0')">0</button>
+      <button onclick="appendOperator('/')">/</button>
+      <button onclick="calculateResult()">=</button>
+      <button onclick="clearInput()">C</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function appendNumber(num) {
+    document.getElementById("testone").value += num;
+  }
+
+  function appendOperator(op) {
+    document.getElementById("testone").value += op;
+  }
+
+  function calculateResult() {
+    try {
+      const expression = document.getElementById("testone").value;
+      const result = eval(expression); // Safe here because input only comes from button presses
+      document.getElementById("testone").value = result;
+    } catch (error) {
+      document.getElementById("testone").value = "Error";
+    }
+  }
+
+  function clearInput() {
+    document.getElementById("testone").value = "";
+  }
+</script>
+
+</body>
+</html>
