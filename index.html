@@ -105,7 +105,7 @@
   function calculateResult() {
     try {
       const expression = document.getElementById("testone").value;
-      const result = eval(expression); // Safe here because input only comes from button presses
+      const result = eval(expression);
       document.getElementById("testone").value = result;
     } catch (error) {
       document.getElementById("testone").value = "Error";
